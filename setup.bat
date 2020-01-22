@@ -5,3 +5,4 @@ pip install pillow
 pip install qrcode
 pip install flask
 pip install werkzeug
+deactivate
