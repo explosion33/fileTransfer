@@ -1,3 +1,4 @@
 python3 -m venv env
 call .\env\Scripts\activate
 pip install -r requirements.txt
+deactivate
