@@ -2,16 +2,15 @@ from flask import render_template, flash, redirect, request, url_for
 from werkzeug import secure_filename
 from app import app
 import os
+import logging #change logging status of wekzeug
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 print("KEY:", app.config["KEY"])
 
 #Call to shutdown server and close QR window
 def shutdown_server():
-    
-    file = open("pgSettings.txt", "w")
-    file.write("False")
-    file.close()
-
     func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
