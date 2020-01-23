@@ -1,5 +1,5 @@
 from app import app
-import io, sys, os
+import io, sys, os, qrcode
 
 def createQR(data, ascii=False):
     """
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     createQR(app.config["QR_IP"] + app.config["KEY"], True)
     print(app.config["QR_IP"] + app.config["KEY"])
-    
+
     #disable text legging from app
     text_trap = io.StringIO()
     sys.stdout = text_trap
