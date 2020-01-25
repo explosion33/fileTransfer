@@ -1,5 +1,6 @@
 from app import app
-import io, sys, os, qrcode
+import io, sys, os, qrcode, webbrowser, time
+from multiprocessing import Process
 
 def createQR(data, ascii=False):
     """
@@ -24,16 +25,32 @@ def createQR(data, ascii=False):
     
     return img
 
+def launchBrowser(url):
+    webbrowser.open(url, 1)
+    return
 
 if __name__ == '__main__':
     #create a QR code and print to console
     os.system("cls")
+    try:
+        mode = sys.argv[1]
+    except:
+        mode = ""
 
-    createQR(app.config["QR_IP"] + app.config["KEY"], True)
-    print(app.config["QR_IP"] + app.config["KEY"])
+    if mode == "up":
+        createQR(app.config["QR_IP"] + app.config["UPKEY"], True)
+        print(app.config["QR_IP"] + app.config["UPKEY"])
+
+        p = Process(target=launchBrowser, args=(app.config["QR_IP"] + app.config["UPKEY"][0:10] + "select",))
+        p.start()
+
+    else:
+        createQR(app.config["QR_IP"] + app.config["DOWNKEY"], True)
+        print(app.config["QR_IP"] + app.config["DOWNKEY"])
 
     #disable text legging from app
     text_trap = io.StringIO()
     sys.stdout = text_trap
+
 
     app.run(host="0.0.0.0", port=app.config["PORT"])
