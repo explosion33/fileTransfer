@@ -12,10 +12,10 @@ otherwise run ```pip install -r requiremnts.txt``` to install dependencies
 navigate to ```config.py``` and change:
 
 ```
-PORT:           4 numbers that you want the server to run on
-QR_IP:          the ip addesss yoy want encoded into the QR ex:(http://PUBLIC_IP:PORT/) the slash at the end is required
+PORT:           port that you want the server to run on ex: 8080
+QR_IP:          the ip addesss yoy want encoded into the QR ex: "http://PUBLIC_IP:" or "http://IPv4:"
 UPLOAD_FOLDER:  the folder you want files to be downloaded to on your computer
 ```
 
 ## start
-to start the program run ```start.bat``` or ```startWOenv.bat``` if you arent usinga virtual enviroment
+to start the program run ```start.bat``` or ```startWOenv.bat``` if you arent using a virtual enviroment
