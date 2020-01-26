@@ -19,3 +19,7 @@ UPLOAD_FOLDER:  the folder you want files to be downloaded to on your computer
 
 ## start
 to start the program run ```start.bat``` or ```startWOenv.bat``` if you arent using a virtual enviroment
+
+by default the program runs in download mode, adding ```up``` as an argument runs in upload mode (```down``` also does download mode)
+
+ex: ```start.bat up```

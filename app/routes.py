@@ -2,12 +2,14 @@ from flask import render_template, flash, redirect, request, url_for
 from werkzeug import secure_filename
 from app import app
 import os
-import shutil
+import shutil, stat
 import glob
 import logging #change logging status of wekzeug
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
+
+clearedDIR = False
 
 #Call to shutdown server and close QR window
 def shutdown_server():
@@ -43,9 +45,12 @@ def upload_file():
 
 @app.route('/' + app.config["UPKEY"][0:10] + "select",  methods=['GET', 'POST'])
 def upload_select():
-    files = glob.glob(app.config["ROOT"] + "/app/static/files")
-    for f in files:
-        os.remove(f)
+    global clearedDIR
+    if not clearedDIR:
+        shutil.rmtree(app.config["ROOT"] + "/app/static/files")
+        os.mkdir(app.config["ROOT"] + "/app/static/files")
+        clearedDIR = True
+
     #if there was a POST request
     if request.method == 'POST':
         #get file and gerneate name

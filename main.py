@@ -31,7 +31,7 @@ def launchBrowser(url):
 
 if __name__ == '__main__':
     #create a QR code and print to console
-    os.system("cls")
+    #os.system("cls")
     try:
         mode = sys.argv[1]
     except:
