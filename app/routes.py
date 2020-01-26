@@ -47,7 +47,10 @@ def upload_file():
 def upload_select():
     global clearedDIR
     if not clearedDIR:
-        shutil.rmtree(app.config["ROOT"] + "/app/static/files")
+        try:
+            shutil.rmtree(app.config["ROOT"] + "/app/static/files")
+        except:
+            pass
         os.mkdir(app.config["ROOT"] + "/app/static/files")
         clearedDIR = True
 
