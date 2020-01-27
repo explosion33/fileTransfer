@@ -1,6 +1,8 @@
 from app import app
 import io, sys, os, qrcode, webbrowser, time
 from multiprocessing import Process
+import subprocess
+from winreg import HKEY_CURRENT_USER, OpenKey, QueryValue
 
 def createQR(data, ascii=False):
     """
@@ -26,7 +28,26 @@ def createQR(data, ascii=False):
     return img
 
 def launchBrowser(url):
-    webbrowser.open(url, 1)
+    #get default browser location
+
+    with OpenKey(HKEY_CURRENT_USER,
+                r"Software\Classes\http\shell\open\command") as key:
+        cmd = QueryValue(key, None)
+    
+    num = 0
+    end = ""
+    for char in cmd:
+        if char == '"':
+            num += 1
+        if num == 2:
+            break
+        end += char
+    loc = end[1::]
+
+    cmd2 = '"' + loc + '"' + " -new-window -url " + url
+    time.sleep(0.5)
+    p = subprocess.call(cmd2)
+
     return
 
 if __name__ == '__main__':
