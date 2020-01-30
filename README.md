@@ -1,6 +1,8 @@
 # fileTransfer
 transfer files from any device to your computer
 
+tested on: windows10 w/ firefox
+
 ## setup
 
 ```git clone https://github.com/explosion33/fileTransfer```
