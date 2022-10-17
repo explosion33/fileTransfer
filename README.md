@@ -1,7 +1,10 @@
 # fileTransfer
-transfer files from any device to your computer
+Transfer small files locally through HTTP
 
-tested on: windows10 w/ firefox
+## About
+This is a small web-server based file transfer server
+
+It is designed to easily transfer files from an Iphone to a windows computer and vise-versa
 
 ## setup
 
